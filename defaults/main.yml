@@ -1,0 +1,3 @@
+---
+# defaults file for backup-mariadb
+VAR_MARIADB_BACKUP_DIR: /backups/mariadb

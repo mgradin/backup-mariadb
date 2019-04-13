@@ -1,0 +1,4 @@
+---
+# tasks file for backup-mariadb
+- import_tasks: backup.yml
+  become: true
