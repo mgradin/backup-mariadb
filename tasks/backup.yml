@@ -5,10 +5,11 @@
     recurse: yes
     state: directory
 
-- name: Enable cron to run mysql backups
-  cron:
-    name: "mariadb backup"
-    minute: "0"
-    hour: "4"
-    job: 'docker exec mariadb sh -c 'exec mysqldump --all-databases --add-drop-database -uroot -p"$MYSQL_ROOT_PASSWORD"' | gzip > "{{ VAR_MARIADB_BACKUP_DIR }}"/all-databases.sql.gz 2>&1''
+- name: Copy backup template to /etc/cron.daily
+  template:
+    src: backup-mariadb.j2
+    dest: /etc/cron.daily/backup-mariadb
+    owner: root
+    group: root
+    mode: 0755
 
